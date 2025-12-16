@@ -1,1 +1,10 @@
-# TODO: Implementar el Dockerfile para la aplicación
+FROM eclipse-temurin:17-jdk
+
+WORKDIR /app
+
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} app.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "/app/app.jar", "--spring.profiles.active=docker"]
